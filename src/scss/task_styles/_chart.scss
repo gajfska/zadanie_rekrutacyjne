@@ -1,0 +1,29 @@
+.chart-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+
+  .chart {
+    width: 340px;
+    height: 4px;
+    display: flex;
+    border-radius: 2px;
+    overflow: hidden;
+
+    .segment {
+      height: 100%;
+    }
+
+    .win { background-color: $primary-green; }
+    .draw { background-color: $primary-grey; }
+    .loss { background-color: $primary-red; }
+  }
+
+  .numbers {
+    display: flex;
+    gap: 5px;
+    font-size: 12px;
+    color: $dark-blue;
+  }
+}

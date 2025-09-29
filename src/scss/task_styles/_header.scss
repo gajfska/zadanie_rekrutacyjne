@@ -1,0 +1,39 @@
+@import 'colors';
+@import 'mixins';
+
+.header {
+  @include card-box;
+  @include flex-colum;
+  align-items: center;
+  max-width: 1140px;
+  margin: 2rem auto 0;
+  background-color: $primary-accent;
+  position: relative;
+  
+  &__content {
+    padding: 1.5rem 2rem;
+    gap: 2rem;
+  }
+  
+  &__title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: $dark-blue;
+    margin: 0;
+  }
+  
+  &__search {
+    flex: 0 0 auto;
+    min-width: 300px;
+  }
+  
+  &__search-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid $primary-accent;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: $primary-grey;
+    background-color: $white;
+   }
+}

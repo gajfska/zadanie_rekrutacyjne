@@ -1,0 +1,44 @@
+@import 'mixins';
+
+.form {
+  @include flex-center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 16px;
+  background-color: $primary-accent;
+  padding: 1rem 0;
+
+
+  &__label {
+    color: $dark-blue;
+    font-size: 12px;
+  }
+
+  &__circles {
+    display: flex;
+    gap: 0.3rem;
+  }
+
+  .circle {
+    @include flex-center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 0.9rem;
+    font-weight: bold;
+    justify-content: center;
+    color: black;
+
+    &.win {
+      background-color: $primary-green;
+    }
+
+    &.draw {
+      background-color: $primary-grey;
+    }
+
+    &.loss {
+      background-color: $primary-red;
+    }
+  }
+}
