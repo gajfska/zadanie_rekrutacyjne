@@ -1,0 +1,112 @@
+@import 'colors';
+@import 'mixins';
+
+#skeletonContainer {
+  max-width: 1140px;
+  margin: 2rem auto;
+  transition: opacity 0.5s ease;
+
+  &.fade-out {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+.sceleton {
+    @include card-box;
+    max-width: 1140px;
+    margin: 2rem auto;
+    position: relative;
+    @include flex-center-vert;
+    justify-content: space-between;
+    max-height: 80px;
+
+    @keyframes pulse {
+    0% { background: $primary-grey; }
+    50% { background: $secondary; }
+    100% { background: $primary-grey; }
+  }
+
+  &__badge {
+    @include flex-center;
+    position: absolute;
+    left: 0;
+    height: 24px;
+    width: 32px;
+    background: $secondary;
+    animation: pulse 1.5s infinite ease-in-out;
+    font-size: $font-size-sm;
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+  }
+
+  &__team_main_info {
+    @include flex-center;
+    margin: 2rem 2rem;
+  }
+
+  &__logo {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: $secondary;
+    animation: pulse 1.5s infinite ease-in-out;
+  }
+
+  &__team-name {
+    width: 120px;
+    height: 20px;
+    display: flex;
+    border-radius: 20px;
+    background-color: $secondary;
+    animation: pulse 1.5s infinite ease-in-out;
+    margin: auto 2rem;
+  }
+
+  &__bottom {
+    @include flex-center;
+
+    @include tablet {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+  }
+
+  &__chart-container {
+    @include flex-center-vert;
+    gap: 10px;
+    margin-right: 1rem;
+
+      @include tablet {
+        @include flex-column;
+        margin: 0.1rem;
+      }
+  }
+
+  &__chart {
+    width: 220px;
+    height: 10px;
+    display: flex;
+    border-radius: 20px;
+    background-color: $secondary;
+    animation: pulse 1.5s infinite ease-in-out;
+  }
+
+  &__numbers {
+    width: 120px;
+    height: 10px;
+    display: flex;
+    border-radius: 20px;
+    background-color: $secondary;
+    animation: pulse 1.5s infinite ease-in-out;
+  }
+
+  &__points {
+    width: 120px;
+    height: 40px;
+    display: flex;
+    border-radius: 5px;
+    background-color: $secondary;
+    animation: pulse 1.5s infinite ease-in-out;
+  }
+}

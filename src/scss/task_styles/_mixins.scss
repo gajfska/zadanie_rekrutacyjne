@@ -1,16 +1,88 @@
-@mixin flex-center {
-  display: flex;
-  align-items: center;
-}
-
-@mixin flex-colum {
-  display: flex;
-  flex-direction: column;
-}
-
 @mixin card-box {
   background: #fff;
   border: 1px solid #cbd5e1;
   border-radius: 16px;
   padding: 1rem;
+}
+
+@mixin circle ($color, $diameter) {
+    background: $color;
+    border-radius: 50%;
+    height: $diameter;
+    width: $diameter;
+}
+
+// flex helpers
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-center-column {
+  @include flex-center;
+  flex-direction: column;
+}
+
+@mixin flex-center-vert {
+  display: flex;
+  align-items: center;
+}
+
+@mixin flex-center-horiz {
+  display: flex;
+  justify-content: center;
+}
+
+// circle cluster
+@mixin circle-cluster($color, $size) {
+  position: relative;
+  width: $size;
+  height: $size;
+
+  .circle-position {
+    position: absolute;
+  }
+
+  .filled {
+    @include circle($color, $size * 0.19);
+    top: $size * 0.35;
+  }
+
+  .medium {
+    @include circle(transparent, $size * 0.51);
+    border: $size * 0.13 solid $color;
+    left: $size * 0.2;
+    top: $size * 0.6;
+  }
+
+  .large {
+    @include circle(transparent, $size);
+    border: $size * 0.19 solid $color;
+    left: $size * 0.75;
+  }
+}
+
+// responsive helpers
+@mixin mobile {
+  @media (min-width: 320px) and (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: 768px) and (max-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: 1025px) {
+    @content;
+  }
 }

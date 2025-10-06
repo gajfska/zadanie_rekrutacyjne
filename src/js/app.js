@@ -7,16 +7,44 @@ let dataLoaded = false;
 document.addEventListener("DOMContentLoaded", () => {
     initInlineSVG();
     setupSearch();
+    createSkeletons();
     setupSkeletonScroll();
 });
 
-// Skeleton on scroll
+// create 5 skeletons
+function createSkeletons() {
+  const container = document.getElementById('skeletonContainer');
+  const skeletonHTML = `
+    <div class="sceleton">
+      <div class="sceleton__badge"></div>
+      <div class="sceleton__team_main_info">
+        <div class="sceleton__logo"></div>
+        <div class="sceleton__team-name"></div>
+      </div>
+      <div class="sceleton__bottom">
+        <div class="sceleton__charts">
+          <div class="sceleton__chart-container" style="display:flex;align-items:center;gap:10px;">
+            <div class="sceleton__chart"></div>
+            <div class="sceleton__numbers"></div>
+          </div>
+        </div>
+        <div class="sceleton__points"></div>
+      </div>
+    </div>
+  `;
+
+  for (let i = 0; i < 5; i++) {
+    container.insertAdjacentHTML('beforeend', skeletonHTML);
+  }
+}
+
+// skeleton on scroll
 function setupSkeletonScroll() {
   $(window).on('scroll', function() {
     if (!hasScrolled) {
       hasScrolled = true;
       
-      $('.skeleton').addClass('fade-out');
+      $('#skeletonContainer').addClass('fade-out');
       setTimeout(() => {
         if (!dataLoaded) {
           loadTeamsData();
@@ -26,9 +54,26 @@ function setupSkeletonScroll() {
   });
 }
 
-
-
 // Search
+const input = document.querySelector('.header__search-input');
+const icon = document.querySelector('.header__search i');
+
+input.addEventListener('input', () => {
+  if (input.value.trim() !== '') {
+    input.style.color = '#0f172a';
+    input.style.borderColor = '#4a6cf7';
+    icon.classList.remove('fa-search');
+    icon.classList.add('fa-close');
+    icon.style.color = '#4a6cf7';
+  } else {
+    input.style.borderColor = '';
+    icon.classList.remove('fa-close');
+    icon.classList.add('fa-search');
+    icon.style.color = '';
+  }
+});
+
+
 function setupSearch() {
   const searchInput = $('#teamSearch');
   
@@ -67,30 +112,39 @@ function createChart(team) {
     }
     return `<div class="circle ${resultClass}">${result}</div>`;
   }).join('');
+
+  const badgeClass = team.intRank <= 3 ? 'card__badge--top' : 'card__badge--other';
+
+  const logoHtml = team.strBadge
+  ? `<div class="card__logo" style="background-image: url(${team.strBadge})"></div>`
+  : `<div class="card__logo"><i class="fa fa-soccer-ball-o"></i></div>`;
+
   
   return `
     <div class="card" data-team="${team.strTeam.toLowerCase()}">
       <div class="card__top">
-        <div class="card__badge">${team.intRank}</div>
+        <div class="card__badge ${badgeClass}">${team.intRank}</div>
         <div class="card__team_main_info">
-          <div class="card__logo" style="background-image: url(${team.strBadge})"></div>
+          ${logoHtml}
           <div class="card__team-name">${team.strTeam}</div>
         </div>
-        <div class="charts">
-          <div class="chart-container">
-            <div class="chart">
-              <div class="segment win" style="width: ${winWidth}px"></div>
-              <div class="segment draw" style="width: ${drawWidth}px"></div>
-              <div class="segment loss" style="width: ${lossWidth}px"></div>
-            </div>
-            <div class="numbers">
-              <span class="win">W: ${team.intWin}</span>
-              <span class="draw">D: ${team.intDraw}</span>
-              <span class="loss">L: ${team.intLoss}</span>
+        <div class="card__charts">
+          <div class="charts">
+            <div class="chart-container">
+              <div class="chart">
+                <div class="segment win" style="width: ${winWidth}px"></div>
+                <div class="segment draw" style="width: ${drawWidth}px"></div>
+                <div class="segment loss" style="width: ${lossWidth}px"></div>
+              </div>
+              <div class="numbers">
+                <span class="win">W: ${team.intWin}</span>
+                <span class="draw">D: ${team.intDraw}</span>
+                <span class="loss">L: ${team.intLoss}</span>
+              </div>
             </div>
           </div>
+          <div class="card__points">${team.intPoints} PTK</div>
         </div>
-        <div class="card__points">${team.intPoints} PTK</div>
       </div>
       <div class="card__line"></div>
       <div class="card__bottom">
@@ -135,11 +189,15 @@ function showApiError() {
   $('main .card').remove();
   
   // Show API error message
-  $('#noResultsMessage .no-results__text').text('There was a problem. Please try again later');
+  $('#noResultsMessage .no-results__text').text('There was a problem. Please try again later.');
   $('#noResultsMessage').show();
+
+  $('#noResultsMessage i')
+  .removeClass('fa-soccer-ball-o')  // remove the old icon
+  .addClass('fa-exclamation'); 
   
   // Hide skeleton on error
-  $('.skeleton').addClass('fade-out');
+  $('##skeletonContainer').addClass('fade-out');
 }
 
 // API
@@ -156,7 +214,7 @@ function loadTeamsData() {
       
       // Remove skeleton
       setTimeout(() => {
-        $('.skeleton').remove();
+        $('#skeletonContainer').remove();
       }, 500);
     })
     .catch((error) => {

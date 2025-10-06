@@ -2,10 +2,54 @@
 $white: #fff;
 $black: #000;
 $primary-blue: #4a6cf7;
-$primary-green: #0ebca7;
-$primary-red: #f45b69;
 $primary-grey: #94a3b8;
 $primary-accent: #ebefff;
-$light-grey: #cbd5e1;
-$dark-blue: #0f172a;
+
+// primitives-colors
+$foreground: #0f172a;
+
+//skeleton
+$skeleton-background: #e2f8f0;
+
+//input
+$input-background: #fff;
+$input-border-default: #cbd5e1;
+$input-border-ring: #4a6cf7;
+$input-text-placeholder:#334155;
+$input-text-value: #0f172a;
+$input-icon-defaut: #cbd5e1;
+$input-icon-active: #4a6cf7;
+
+//badge
+$badge-default: #e2e8f0;
+
+//primitives-colors
+$primary: #4a6cf7;
+$body: #f8fafc;
+$secondary: #e2e8f0;
+$muted: #cbd5e1;
+$accent: #ebefff;
+$accent-02: #ced8ff;
+$accent-03: #8899fa;
+$popover: #fff;
+$card: #fff;
+$destructive: #f45b69;
+$chart-1: #0ebca7;
+$chart-2: #94a3b8;
+$chart-3: #f45b69;
+
+//font size
+$font-size-xs: 12px;
+$font-size-sm: 14px;
+$font-size-base: 16px;
+$font-size-lg: 18px;
+$font-size-xl: 32px;
+
+// font weights
+$font-weight-normal: 400;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+
+
 

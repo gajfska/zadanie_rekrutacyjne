@@ -9,24 +9,47 @@
 	<link rel="stylesheet" href="style.css">
 </head>
 <body class="task-page">
-	<div class="skeleton"></div>
 	<header class="header">
+		<div class="circle-cluster-first">
+			<div class="circle-position filled"></div>
+			<div class="circle-position medium"></div>
+			<div class="circle-position large"></div>
+		</div>
+		<div class="circle-cluster-second">
+			<div class="circle-position filled"></div>
+			<div class="circle-position medium"></div>
+			<div class="circle-position large"></div>
+		</div>
+		<div class="circle-cluster-third">
+			<div class="circle-position filled"></div>
+			<div class="circle-position medium"></div>
+			<div class="circle-position large"></div>
+		</div>
 		<div class="header__content">
 			<h1 class="header__title">Premier League</h1>
 			<div class="header__search">
 				<input type="text" id="teamSearch" class="header__search-input" placeholder="Search for a team">
+				<i class="fa fa-search"></i>
 			</div>
 		</div>
 	</header>
+
+	<div id="skeletonContainer"></div>
+					
+	<div id="noResultsMessage" class="no-results">
+		<i class="fa fa-soccer-ball-o"></i>
+		<div class="no-results__text">No teams found matching your search</div>
+	</div>
+
+	<main></main>
+
+
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12">
 				<div class="task-page__placeholder placeholder">
-					<div id="noResultsMessage" class="no-results">
-						<i class="fa fa-soccer-ball-o"></i>
-						<div class="no-results__text">No teams found matching your search</div>
-					</div>
-					<main></main>
+					<img src="assets/icons/manufacturing_24dp.svg" class="svg icon icon--lg placeholder__icon">
+					<div class="placeholder__text">W tym miejscu oczekujemy Twojego zadania. Możesz usunąć ten placeholder.</div>
 				</div>
 				<div class="instructions">
 					<div class="instructions__segment">
